@@ -1,0 +1,4 @@
+{
+    "al.codeAnalyzers": ["${AppSourceCop}"],
+    "al.enableCodeAnalysis": false
+}
