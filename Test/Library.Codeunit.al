@@ -22,36 +22,25 @@ codeunit 70104 "PTE Test Library"
         NoSeriesManagement: Codeunit NoSeriesManagement;
         NoSeriesCode: Code[20];
     begin
-        // Post the purchase document.
-        // Depending on the document type and posting type return the number of the:
-        // - purchase receipt,
-        // - posted purchase invoice,
-        // - purchase return shipment, or
-        // - posted credit memo
-        // SetCorrDocNoPurchase(PurchaseHeader);
-        with PurchaseHeader do begin
-            Validate(Receive, ToShipReceive);
-            Validate(Ship, ToShipReceive);
-            Validate(Invoice, ToInvoice);
+        PurchaseHeader.Validate(Receive, ToShipReceive);
+        PurchaseHeader.Validate(Ship, ToShipReceive);
+        PurchaseHeader.Validate(Invoice, ToInvoice);
 
-            case "Document Type" of
-                "Document Type"::Invoice:
-                    NoSeriesCode := "Posting No. Series"; // posted purchase invoice
-                "Document Type"::Order:
-                    if ToShipReceive and not ToInvoice then
-                        NoSeriesCode := "Receiving No. Series" // posted purchase receipt
-                    else
-                        NoSeriesCode := "Posting No. Series"; // posted purchase invoice
-                "Document Type"::"Credit Memo":
-                    NoSeriesCode := "Posting No. Series"; // posted purchase credit memo
-                "Document Type"::"Return Order":
-                    if ToShipReceive and not ToInvoice then
-                        NoSeriesCode := "Return Shipment No. Series" // posted purchase return shipment
-                    else
-                        NoSeriesCode := "Posting No. Series"; // posted purchase credit memo
+        case PurchaseHeader."Document Type" of
+            PurchaseHeader."Document Type"::Invoice:
+                NoSeriesCode := PurchaseHeader."Posting No. Series"; // posted purchase invoice
+            PurchaseHeader."Document Type"::Order:
+                if ToShipReceive and not ToInvoice then
+                    NoSeriesCode := PurchaseHeader."Receiving No. Series" // posted purchase receipt
                 else
-            // Assert.Fail(StrSubstNo('Document type not supported: %1', "Document Type"))
-            end
+                    NoSeriesCode := PurchaseHeader."Posting No. Series"; // posted purchase invoice
+            PurchaseHeader."Document Type"::"Credit Memo":
+                NoSeriesCode := PurchaseHeader."Posting No. Series"; // posted purchase credit memo
+            PurchaseHeader."Document Type"::"Return Order":
+                if ToShipReceive and not ToInvoice then
+                    NoSeriesCode := PurchaseHeader."Return Shipment No. Series" // posted purchase return shipment
+                else
+                    NoSeriesCode := PurchaseHeader."Posting No. Series"; // posted purchase credit memo
         end;
 
         if NoSeriesCode = '' then
@@ -60,7 +49,12 @@ codeunit 70104 "PTE Test Library"
     end;
 
 
-    local procedure CreateFCYPurchaseDocumentWithItem(var PurchaseHeader: Record "Purchase Header"; var PurchaseLine: Record "Purchase Line"; DocumentType: Enum "Purchase Document Type"; VendorNo: Code[20]; ItemNo: Code[20]; Amount: Decimal; LocationCode: Code[10]; ExpectedReceiptDate: Date; CurrencyCode: Code[10])
+    local procedure CreateFCYPurchaseDocumentWithItem(var PurchaseHeader: Record "Purchase Header"; var PurchaseLine: Record "Purchase Line"; DocumentType: Enum "Purchase Document Type"; VendorNo: Code[20];
+                                                                                                                                                                ItemNo: Code[20];
+                                                                                                                                                                Amount: Decimal;
+                                                                                                                                                                LocationCode: Code[10];
+                                                                                                                                                                ExpectedReceiptDate: Date;
+                                                                                                                                                                CurrencyCode: Code[10])
     begin
         CreatePurchHeader(PurchaseHeader, DocumentType, VendorNo);
         if LocationCode <> '' then
@@ -91,7 +85,8 @@ codeunit 70104 "PTE Test Library"
         PurchaseHeader.Modify(true);
     end;
 
-    local procedure CreatePurchaseLine(var PurchaseLine: Record "Purchase Line"; PurchaseHeader: Record "Purchase Header"; LineType: Enum "Purchase Line Type"; No: Code[20]; Amount: Decimal)
+    local procedure CreatePurchaseLine(var PurchaseLine: Record "Purchase Line"; PurchaseHeader: Record "Purchase Header"; LineType: Enum "Purchase Line Type"; No: Code[20];
+                                                                                                                                         Amount: Decimal)
     begin
         CreatePurchaseLineSimple(PurchaseLine, PurchaseHeader);
 
