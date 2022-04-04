@@ -53,7 +53,7 @@ codeunit 70101 "PTE Run Item Adjust Cost"
         foreach Value in Items do begin
             ItemAdjustCostLogEntry.SetRange("Item No.", Value);
             ItemAdjustCostLogEntry.SetRange(Processed, false);
-            ItemAdjustCostLogEntry.ModifyAll(Processed, false);
+            ItemAdjustCostLogEntry.ModifyAll(Processed, true);
         end;
     end;
 

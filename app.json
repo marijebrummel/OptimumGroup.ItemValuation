@@ -3,12 +3,7 @@
   "name": "Item Valuation | Performance",
   "publisher": "Marije Jennifer Brummel",
   "version": "1.0.0.0",
-  "dependencies": [{
-    "id": "86f674f1-0913-437a-955d-d6e5b062ce46",
-    "name": "OGDT Core",
-    "publisher": "Optimum Group",
-    "version": "18.0.0.0"}
-  ],
+  "dependencies": [],
   "screenshots": [],
   "platform": "1.0.0.0",
   "application": "18.0.0.0",
