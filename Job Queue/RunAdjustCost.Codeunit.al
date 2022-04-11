@@ -7,6 +7,14 @@ codeunit 70101 "PTE Run Item Adjust Cost"
         Items := CreateBuffer();
         ProcessBuffer(Items);
         SetBufferProcessed(Items);
+        RunPostCostToGL;
+    end;
+
+    local procedure RunPostCostToGL()
+    var
+        PostInventoryCostToGL: Codeunit "Post Inventory Cost to G/L";
+    begin
+        PostInventoryCostToGL.Run();
     end;
 
     local procedure CreateBuffer() Items: List of [Code[20]];
