@@ -1,4 +1,4 @@
-table 70100 "PTE Item Adjust Cost Log Entry"
+table 60032 "PTE Item Adjust Cost Log Entry"
 {
     DataClassification = ToBeClassified;
 
