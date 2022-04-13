@@ -27,7 +27,4 @@ table 70100 "PTE Item Adjust Cost Log Entry"
         key(PK; "Entry No.") { Clustered = true; }
         key(ItemNoProcessed; "Item No.", Processed) { }
     }
-
-
-
 }

@@ -1,4 +1,4 @@
-codeunit 70104 "PTE Test Library"
+codeunit 62028 "PTE Test Library"
 {
     procedure CreateItemWithUnitPriceAndUnitCost(var Item: Record Item; UnitPrice: Decimal; UnitCost: Decimal)
     begin
@@ -196,8 +196,6 @@ codeunit 70104 "PTE Test Library"
             QtyPerUoM := 1;
         ItemUnitOfMeasure.Validate("Qty. per Unit of Measure", QtyPerUoM);
 
-        if QtyRndPrecision <> 0 then
-            ItemUnitOfMeasure.Validate("Qty. Rounding Precision", QtyRndPrecision);
         ItemUnitOfMeasure.Insert(true);
     end;
 

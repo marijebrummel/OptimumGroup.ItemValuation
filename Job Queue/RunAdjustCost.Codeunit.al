@@ -1,4 +1,4 @@
-codeunit 70101 "PTE Run Item Adjust Cost"
+codeunit 62027 "PTE Run Item Adjust Cost"
 {
     trigger OnRun()
     var

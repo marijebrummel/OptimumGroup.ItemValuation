@@ -1,4 +1,4 @@
-codeunit 70100 "PTE Adjust Cost Event Subs."
+codeunit 62026 "PTE Adjust Cost Event Subs."
 {
     [EventSubscriber(ObjectType::Codeunit, Codeunit::"Item Jnl.-Post Line", 'OnAfterUpdateAdjmtProp', '', false, false)]
     local procedure OnAfterUpdateAdjmtProp(var ValueEntry: Record "Value Entry")

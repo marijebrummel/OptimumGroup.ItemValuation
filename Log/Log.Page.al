@@ -1,4 +1,4 @@
-page 70100 "PTE Item Adjust Cost Log Entr."
+page 50015 "PTE Item Adjust Cost Log Entr."
 {
     Caption = 'Item Adjust Cost Log Entries';
     PageType = List;
