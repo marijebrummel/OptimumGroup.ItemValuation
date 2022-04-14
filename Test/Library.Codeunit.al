@@ -3,9 +3,11 @@ codeunit 62028 "PTE Test Library"
     procedure CreateItemWithUnitPriceAndUnitCost(var Item: Record Item; UnitPrice: Decimal; UnitCost: Decimal)
     begin
         CreateItem(Item);
-        Item.Validate("Costing Method", Item."Costing Method"::Average);
+        Item.Validate("Costing Method", Item."Costing Method"::FIFO);
         Item.Validate("Unit Price", UnitPrice);
         Item.Validate("Unit Cost", UnitCost);
+        Item.Validate("Standard Cost", UnitCost);
+        Item.Validate("Last Direct Cost", UnitCost);
         Item.Modify(true);
     end;
 

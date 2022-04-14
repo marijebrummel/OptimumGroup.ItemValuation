@@ -64,5 +64,4 @@ codeunit 62027 "PTE Run Item Adjust Cost"
             ItemAdjustCostLogEntry.ModifyAll(Processed, true);
         end;
     end;
-
 }
